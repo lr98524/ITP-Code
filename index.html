@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" data-lt-installed="true">
+<head><title>Egg Timer</title></head>
+<body>
+  <h1>Egg Timer</h1>
+  <p>
+    <button onclick="doStartTimer();">Start the timer</button>
+  </p>
+  <script> 
+    function doStartTimer(){ setTimeout(doEndTimer,5*1000); } 
+    function doEndTimer() { alert("Your egg is ready");}
+  </script>
+</body>
+</html>
