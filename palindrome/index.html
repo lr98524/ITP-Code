@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        #result {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palindrome Checker</h1>
+    <p>All code wrote by me for FREECodeCamp Certification Challenge</p>
+
+    <!-- Input Element -->
+    <input type="text" id="text-input" placeholder="Enter text here" />
+    <!-- Check Button -->
+    <button id="check-btn">Check</button>
+    <!-- Result Element -->
+    <p id="result"></p>
+
+    <script>
+        // Function to handle the palindrome check
+        document.getElementById("check-btn").addEventListener("click", function() {
+            const inputText = document.getElementById("text-input").value;
+            const resultElement = document.getElementById("result");
+
+            // Check if input is empty
+            if (!inputText.trim()) {
+                alert("Please input a value");
+                return;
+            }
+
+            // Clean the input (remove non-alphanumeric characters, make lowercase)
+            const cleanedText = inputText.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+            const reversedText = cleanedText.split("").reverse().join("");
+
+            // Check if the cleaned text is a palindrome
+            if (cleanedText === reversedText) {
+                resultElement.textContent = `${inputText} is a palindrome`;
+            } else {
+                resultElement.textContent = `${inputText} is not a palindrome`;
+            }
+        });
+    </script>
+</body>
+</html>
