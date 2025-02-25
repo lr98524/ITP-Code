@@ -10,6 +10,9 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, "index.html"),
                 about: resolve(__dirname, "about/index.html"),
+                backgroundcc: resolve(__dirname, "backgroundcc/index.html"),
+                palindrome: resolve(__dirname, "palindrome/index.html"),
+                romannumeral: resolve(__dirname, "romannumeral/index.html"),
             },
         },
     },
