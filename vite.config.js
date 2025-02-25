@@ -1,18 +1,18 @@
 // vite.config.js
-import { defineConfig } from "vite";
-import { resolve } from "path";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
     base: "/ITP-Code/",
+    root: "src",
     build: { 
-        outDir: "docs",
+        outDir: "../docs",
         rollupOptions: {
             input: {
-                main: resolve(__dirname, "src/indexes/index.html"),
-                about: resolve(__dirname, "src/indexes/about.html"),
-                backgroundcc: resolve(__dirname, "src/indexes/backgroundcc.html"),
-                palindrome: resolve(__dirname, "src/indexes/palindrome.html"),
-                romannumeral: resolve(__dirname, "src/indexes/romannumeral.html"),
+                main: 'src/index.html',
+                about: 'src/indexes/about.html',
+                backgroundcc: 'src/indexes/backgroundcc.html',
+                palindrome: 'src/indexes/palindrome.html',
+                romannumeral: 'src/indexes/romannumeral.html',
             },
         },
     },
