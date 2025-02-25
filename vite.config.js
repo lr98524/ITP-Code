@@ -8,7 +8,7 @@ export default defineConfig({
         outDir: "docs",
         rollupOptions: {
             input: {
-                main: resolve(__dirname, "index.html"),
+                main: resolve(__dirname, "src/indexes/index.html"),
                 about: resolve(__dirname, "src/indexes/about.html"),
                 backgroundcc: resolve(__dirname, "src/indexes/backgroundcc.html"),
                 palindrome: resolve(__dirname, "src/indexes/palindrome.html"),
