@@ -9,10 +9,10 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, "index.html"),
-                about: resolve(__dirname, "about.html"),
-                backgroundcc: resolve(__dirname, "backgroundcc.html"),
-                palindrome: resolve(__dirname, "palindrome.html"),
-                romannumeral: resolve(__dirname, "romannumeral.html"),
+                about: resolve(__dirname, "src/indexes/about.html"),
+                backgroundcc: resolve(__dirname, "src/indexes/backgroundcc.html"),
+                palindrome: resolve(__dirname, "src/indexes/palindrome.html"),
+                romannumeral: resolve(__dirname, "src/indexes/romannumeral.html"),
             },
         },
     },
