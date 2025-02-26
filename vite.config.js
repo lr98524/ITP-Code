@@ -13,6 +13,7 @@ export default defineConfig({
                 backgroundcc: 'src/indexes/backgroundcc.html',
                 palindrome: 'src/indexes/palindrome.html',
                 romannumeral: 'src/indexes/romannumeral.html',
+                todolist: 'src/indexes/todolist.html',
             },
         },
     },
