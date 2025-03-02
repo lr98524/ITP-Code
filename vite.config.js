@@ -9,11 +9,11 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: 'src/index.html',
-                about: 'src/indexes/about.html',
-                backgroundcc: 'src/indexes/backgroundcc.html',
-                palindrome: 'src/indexes/palindrome.html',
-                romannumeral: 'src/indexes/romannumeral.html',
-                todolist: 'src/indexes/todolist.html',
+                about: 'src/demos/about.html',
+                backgroundcc: 'src/demos/backgroundcc.html',
+                palindrome: 'src/demos/palindrome.html',
+                romannumeral: 'src/demos/romannumeral.html',
+                todolist: 'src/demos/todolist.html',
             },
         },
     },
