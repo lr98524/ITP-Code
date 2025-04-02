@@ -15,6 +15,7 @@ export default defineConfig({
         romannumeral: "src/demos/romannumeral.html",
         todolist: "src/demos/todolist.html",
         telephone: "src/demos/telephone.html",
+        mvp: "src/demos/mvp.html",
       },
     },
   },

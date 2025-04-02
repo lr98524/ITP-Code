@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CAPTCHA Game</title>
+	<style>
+    	body {
+        	font-family: Arial, sans-serif;
+    	}
+
+    	#images-container {
+        	display: flex;
+        	flex-wrap: wrap;
+        	gap: 10px;
+    	}
+
+    	.image-item {
+        	width: 150px;
+        	height: 150px;
+        	object-fit: cover;
+        	cursor: pointer;
+        	border: 2px solid #ccc;
+        	transition: transform 0.2s ease;
+    	}
+
+    	.selected {
+        	border: 2px solid green;
+        	transform: scale(1.1);
+    	}
+
+    	.button-container {
+        	margin-top: 20px;
+    	}
+
+    	#result {
+        	margin-top: 20px;
+        	font-size: 18px;
+        	font-weight: bold;
+    	}
+	</style>
+</head>
+<body>
+	<h1>Solve the CAPTCHA</h1>
+	<p>Click on all the images that contain a car, then press Submit.</p>
+    <p>This should not work yet, I have no viable images selected for the game. It is merely a place holder.</p>
+
+	<div id="images-container"></div>
+
+	<div class="button-container">
+    	<button id="submit-btn">Submit</button>
+	</div>
+
+	<div id="result"></div>
+
+	<script>
+    	// Game Data: Images and whether they contain a "car"
+    	const imagesData = [
+        	{ url: 'https://via.placeholder.com/150?text=Car', containsCar: true },
+        	{ url: 'https://via.placeholder.com/150?text=Tree', containsCar: false },
+        	{ url: 'https://via.placeholder.com/150?text=Car', containsCar: true },
+        	{ url: 'https://via.placeholder.com/150?text=House', containsCar: false },
+        	{ url: 'https://via.placeholder.com/150?text=Car', containsCar: true },
+        	{ url: 'https://via.placeholder.com/150?text=Dog', containsCar: false }
+    	];
+
+    	// Shuffle images to avoid predictability
+    	function shuffleImages(array) {
+        	for (let i = array.length - 1; i > 0; i--) {
+            	const j = Math.floor(Math.random() * (i + 1));
+            	[array[i], array[j]] = [array[j], array[i]]; // Swap
+        	}
+    	}
+
+    	shuffleImages(imagesData);
+
+    	// Render the images to the page
+    	const imagesContainer = document.getElementById('images-container');
+    	imagesData.forEach((imageData, index) => {
+        	const img = document.createElement('img');
+        	img.src = imageData.url;
+        	img.alt = imageData.containsCar ? 'Car' : 'Not a Car';
+        	img.classList.add('image-item');
+        	img.setAttribute('data-index', index);
+        	imagesContainer.appendChild(img);
+    	});
+
+    	// Add event listeners to image elements
+    	let selectedImages = [];
+    	const imageItems = document.querySelectorAll('.image-item');
+    	imageItems.forEach((img) => {
+        	img.addEventListener('click', () => {
+            	const index = img.getAttribute('data-index');
+            	if (selectedImages.includes(index)) {
+                	// Deselect if already selected
+                	selectedImages = selectedImages.filter((id) => id !== index);
+                	img.classList.remove('selected');
+            	} else {
+                	// Select the image
+                	selectedImages.push(index);
+                	img.classList.add('selected');
+            	}
+        	});
+    	});
+
+    	// Submit button logic
+    	const submitButton = document.getElementById('submit-btn');
+    	const resultDiv = document.getElementById('result');
+
+    	submitButton.addEventListener('click', () => {
+        	let correct = true;
+
+        	selectedImages.forEach((index) => {
+            	if (!imagesData[index].containsCar) {
+                	correct = false;
+            	}
+        	});
+
+        	// Show result
+        	if (correct && selectedImages.length > 0) {
+            	resultDiv.textContent = 'CAPTCHA solved successfully! 🎉';
+            	resultDiv.style.color = 'green';
+        	} else {
+            	resultDiv.textContent = 'Oops, please try again! ❌';
+            	resultDiv.style.color = 'red';
+        	}
+    	});
+	</script>
+</body>
+</html>
+
