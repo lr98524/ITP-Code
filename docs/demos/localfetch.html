@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+  <title>Local Fetch Demo</title>
+</head>
+
+<body>
+      <!-- A Bootstrap Navbar OMG-->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="../index.html">Home</a></li>
+            <li><a href="/ITP-Code/demos/about">About page link </a></li>
+            <li><a href="/ITP-Code/demos/backgroundcc">Background color changer </a></li>
+            <li><a href="/ITP-Code/demos/palindrome">Palindrome checker </a></li>
+            <li><a href="/ITP-Code/demos/romannumeral">Roman Numeral Converter </a></li>
+            <li><a href="/ITP-Code/demos/todolist">To-Do-List Creator </a></li>
+            <li><a href="/ITP-Code/demos/telephone">Telephone Number Checker </a></li>
+            <li><a href ="/ITP-Code/demos/simple-fetch">Simple Fetch</a></li>
+            <li><a href ="/ITP-Code/demos/localfetch">Local Fetch</a></li>
+            <li><a href="/ITP-Code/demos/mvp">Captcha Game </a></li>
+          </ul>
+        </div>
+      </nav>
+
+  <div class="container">
+    <h1 class="header">Local Fetch Demo</h1>
+  </div>
+
+  <p>Please clone this Github repo <a href="https://github.com/lr98524/Docker-Express-API">https://github.com/lr98524/Docker-Express-API</a>. <br>Then follow the readme instructions.</br></p>
+  
+  <div id="fetch-result">
+    <!-- Placeholder for fetched data or error message -->
+  </div> <!-- fetched data will be displayed here -->
+
+</body>
+
+<script>
+  async function fetchLocalData() {
+    const resultDiv = document.getElementById("fetch-result");
+    try {
+      const response = await fetch("http://localhost:3003/");
+      if (!response.ok) throw new Error("Failed to fetch data");
+
+      const numbers = await response.json();
+      const ul = document.createElement("ul");
+      ul.innerHTML = "<h3>Fetched Random Numbers:</h3>";
+
+      numbers.forEach(num => {
+        const li = document.createElement("li");
+        li.textContent = num;
+        ul.appendChild(li);
+      });
+
+      resultDiv.appendChild(ul);
+    } catch (error) {
+      resultDiv.innerHTML = `
+        <p style="color: red;">
+          Unable to fetch data. Ensure the Dockerized Express API server is running on <strong>localhost:3003</strong>.
+          <br/>Error: ${error.message}
+        </p>
+      `;
+    }
+  }
+
+  // Call the function
+  fetchLocalData();
+</script>
+
+</html>
