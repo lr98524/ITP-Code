@@ -1,148 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CAPTCHA Game</title>
-	<style>
-    	body {
-        	font-family: Arial, sans-serif;
-    	}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <title>CAPTCHA Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-    	#images-container {
-        	display: flex;
-        	flex-wrap: wrap;
-        	gap: 10px;
-    	}
+      #images-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
-    	.image-item {
-        	width: 150px;
-        	height: 150px;
-        	object-fit: cover;
-        	cursor: pointer;
-        	border: 2px solid #ccc;
-        	transition: transform 0.2s ease;
-    	}
+      .image-item {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid #ccc;
+        transition: transform 0.2s ease;
+      }
 
-    	.selected {
-        	border: 2px solid green;
-        	transform: scale(1.1);
-    	}
+      .selected {
+        border: 2px solid green;
+        transform: scale(1.1);
+      }
 
-    	.button-container {
-        	margin-top: 20px;
-    	}
+      .button-container {
+        margin-top: 20px;
+      }
 
-    	#result {
-        	margin-top: 20px;
-        	font-size: 18px;
-        	font-weight: bold;
-    	}
-	</style>
-</head>
-<body>
-	<h1>CAPTCHA Game</h1>
-	      <!-- A Bootstrap Navbar OMG-->
-		  <nav class="navbar navbar-default">
-			<div class="container-fluid">
-			  <ul class="nav navbar-nav">
-				<li class="active"><a href="../index.html">Home</a></li>
-				<li><a href="/ITP-Code/demos/about">About page link </a></li>
-				<li><a href="/ITP-Code/demos/backgroundcc">Background color changer </a></li>
-				<li><a href="/ITP-Code/demos/palindrome">Palindrome checker </a></li>
-				<li><a href="/ITP-Code/demos/romannumeral">Roman Numeral Converter </a></li>
-				<li><a href="/ITP-Code/demos/todolist">To-Do-List Creator </a></li>
-				<li><a href="/ITP-Code/demos/telephone">Telephone Number Checker </a></li>
-				<li><a href ="/ITP-Code/demos/simple-fetch">Simple Fetch</a></li>
-				<li><a href ="/ITP-Code/demos/localfetch">Local Fetch</a></li>
-				<li><a href="/ITP-Code/demos/mvp">Captcha Game </a></li>
-			  </ul>
-			</div>
-		  </nav>
-	<p>Click on all the images that contain a car, then press Submit.</p>
-    <p>This should not work yet, I have no viable images selected for the game. It is merely a place holder.</p>
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- A Bootstrap Navbar OMG-->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index.html">Home</a></li>
+          <li><a href="/ITP-Code/demos/about">About page link </a></li>
+          <li>
+            <a href="/ITP-Code/demos/backgroundcc">Background color changer </a>
+          </li>
+          <li><a href="/ITP-Code/demos/palindrome">Palindrome checker </a></li>
+          <li>
+            <a href="/ITP-Code/demos/romannumeral">Roman Numeral Converter </a>
+          </li>
+          <li><a href="/ITP-Code/demos/todolist">To-Do-List Creator </a></li>
+          <li>
+            <a href="/ITP-Code/demos/telephone">Telephone Number Checker </a>
+          </li>
+          <li><a href="/ITP-Code/demos/simple-fetch">Simple Fetch</a></li>
+          <li><a href="/ITP-Code/demos/localfetch">Local Fetch</a></li>
+          <li><a href="/ITP-Code/demos/mvp">Captcha Game </a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>CAPTCHA Game</h1>
+    <p>Click on all the images that contain a car, then press Submit.</p>
+    <p>
+      This should not work yet, I have no viable images selected for the game.
+      It is merely a place holder.
+    </p>
 
-	<div id="images-container"></div>
+    <div id="images-container"></div>
 
-	<div class="button-container">
-    	<button id="submit-btn">Submit</button>
-	</div>
+    <div class="button-container">
+      <button id="submit-btn">Submit</button>
+    </div>
 
-	<div id="result"></div>
+    <div id="result"></div>
 
-	<script>
-    	// Game Data: Images and whether they contain a "car"
-    	const imagesData = [
-        	{ url: 'https://via.placeholder.com/150?text=Car', containsCar: true },
-        	{ url: 'https://via.placeholder.com/150?text=Tree', containsCar: false },
-        	{ url: 'https://via.placeholder.com/150?text=Car', containsCar: true },
-        	{ url: 'https://via.placeholder.com/150?text=House', containsCar: false },
-        	{ url: 'https://via.placeholder.com/150?text=Car', containsCar: true },
-        	{ url: 'https://via.placeholder.com/150?text=Dog', containsCar: false }
-    	];
+    <script>
+      // Game Data: Images and whether they contain a "car"
+      const imagesData = [
+        { url: "https://via.placeholder.com/150?text=Car", containsCar: true },
+        {
+          url: "https://via.placeholder.com/150?text=Tree",
+          containsCar: false,
+        },
+        { url: "https://via.placeholder.com/150?text=Car", containsCar: true },
+        {
+          url: "https://via.placeholder.com/150?text=House",
+          containsCar: false,
+        },
+        { url: "https://via.placeholder.com/150?text=Car", containsCar: true },
+        { url: "https://via.placeholder.com/150?text=Dog", containsCar: false },
+      ];
 
-    	// Shuffle images to avoid predictability
-    	function shuffleImages(array) {
-        	for (let i = array.length - 1; i > 0; i--) {
-            	const j = Math.floor(Math.random() * (i + 1));
-            	[array[i], array[j]] = [array[j], array[i]]; // Swap
-        	}
-    	}
+      // Shuffle images to avoid predictability
+      function shuffleImages(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]]; // Swap
+        }
+      }
 
-    	shuffleImages(imagesData);
+      shuffleImages(imagesData);
 
-    	// Render the images to the page
-    	const imagesContainer = document.getElementById('images-container');
-    	imagesData.forEach((imageData, index) => {
-        	const img = document.createElement('img');
-        	img.src = imageData.url;
-        	img.alt = imageData.containsCar ? 'Car' : 'Not a Car';
-        	img.classList.add('image-item');
-        	img.setAttribute('data-index', index);
-        	imagesContainer.appendChild(img);
-    	});
+      // Render the images to the page
+      const imagesContainer = document.getElementById("images-container");
+      imagesData.forEach((imageData, index) => {
+        const img = document.createElement("img");
+        img.src = imageData.url;
+        img.alt = imageData.containsCar ? "Car" : "Not a Car";
+        img.classList.add("image-item");
+        img.setAttribute("data-index", index);
+        imagesContainer.appendChild(img);
+      });
 
-    	// Add event listeners to image elements
-    	let selectedImages = [];
-    	const imageItems = document.querySelectorAll('.image-item');
-    	imageItems.forEach((img) => {
-        	img.addEventListener('click', () => {
-            	const index = img.getAttribute('data-index');
-            	if (selectedImages.includes(index)) {
-                	// Deselect if already selected
-                	selectedImages = selectedImages.filter((id) => id !== index);
-                	img.classList.remove('selected');
-            	} else {
-                	// Select the image
-                	selectedImages.push(index);
-                	img.classList.add('selected');
-            	}
-        	});
-    	});
+      // Add event listeners to image elements
+      let selectedImages = [];
+      const imageItems = document.querySelectorAll(".image-item");
+      imageItems.forEach((img) => {
+        img.addEventListener("click", () => {
+          const index = img.getAttribute("data-index");
+          if (selectedImages.includes(index)) {
+            // Deselect if already selected
+            selectedImages = selectedImages.filter((id) => id !== index);
+            img.classList.remove("selected");
+          } else {
+            // Select the image
+            selectedImages.push(index);
+            img.classList.add("selected");
+          }
+        });
+      });
 
-    	// Submit button logic
-    	const submitButton = document.getElementById('submit-btn');
-    	const resultDiv = document.getElementById('result');
+      // Submit button logic
+      const submitButton = document.getElementById("submit-btn");
+      const resultDiv = document.getElementById("result");
 
-    	submitButton.addEventListener('click', () => {
-        	let correct = true;
+      submitButton.addEventListener("click", () => {
+        let correct = true;
 
-        	selectedImages.forEach((index) => {
-            	if (!imagesData[index].containsCar) {
-                	correct = false;
-            	}
-        	});
+        selectedImages.forEach((index) => {
+          if (!imagesData[index].containsCar) {
+            correct = false;
+          }
+        });
 
-        	// Show result
-        	if (correct && selectedImages.length > 0) {
-            	resultDiv.textContent = 'CAPTCHA solved successfully! 🎉';
-            	resultDiv.style.color = 'green';
-        	} else {
-            	resultDiv.textContent = 'Oops, please try again! ❌';
-            	resultDiv.style.color = 'red';
-        	}
-    	});
-	</script>
-</body>
+        // Show result
+        if (correct && selectedImages.length > 0) {
+          resultDiv.textContent = "CAPTCHA solved successfully! 🎉";
+          resultDiv.style.color = "green";
+        } else {
+          resultDiv.textContent = "Oops, please try again! ❌";
+          resultDiv.style.color = "red";
+        }
+      });
+    </script>
+  </body>
 </html>
-
