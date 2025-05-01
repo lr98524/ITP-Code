@@ -45,26 +45,20 @@
         font-weight: bold;
       }
     </style>
-  </head>
-  <body>
-     <!-- A Bootstrap Navbar OMG-->
-     <nav class="navbar navbar-default">
+    <!-- A Bootstrap Navbar OMG-->
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
         <ul class="nav navbar-nav">
           <li class="active"><a href="../index.html">Home</a></li>
           <li><a href="/ITP-Code/demos/about">About page link </a></li>
           <li>
-            <a href="/ITP-Code/demos/backgroundcc"
-              >Background color changer
-            </a>
+            <a href="/ITP-Code/demos/backgroundcc">Background color changer </a>
           </li>
           <li>
             <a href="/ITP-Code/demos/palindrome">Palindrome checker </a>
           </li>
           <li>
-            <a href="/ITP-Code/demos/romannumeral"
-              >Roman Numeral Converter
-            </a>
+            <a href="/ITP-Code/demos/romannumeral">Roman Numeral Converter </a>
           </li>
           <li><a href="/ITP-Code/demos/todolist">To-Do-List Creator </a></li>
           <li>
@@ -81,16 +75,16 @@
       </div>
     </nav>
     <h1>CAPTCHA Game</h1>
+  </head>
+  <body>
     <p>Click on all the images that contain a car, then press Submit.</p>
-    <p>
-      This should not work yet, I have no viable images selected for the game.
-      It is merely a place holder.
-    </p>
 
     <div id="images-container"></div>
 
     <div class="button-container">
       <button id="submit-btn">Submit</button>
+      <button id="reset-btn" style="display: none">Reset</button>
+      <!-- NEW hidden reset button -->
     </div>
 
     <div id="result"></div>
@@ -153,13 +147,22 @@
 
       // Submit button logic
       const submitButton = document.getElementById("submit-btn");
+      const resetButton = document.getElementById("reset-btn");
       const resultDiv = document.getElementById("result");
 
       submitButton.addEventListener("click", () => {
         let correct = true;
 
+        // Check if any selected image is wrong
         selectedImages.forEach((index) => {
-          if (!imagesData[index].containsCar) {
+          if (!imagesData[Number(index)].containsCar) {
+            correct = false;
+          }
+        });
+
+        // Check if any correct car image was missed
+        imagesData.forEach((image, idx) => {
+          if (image.containsCar && !selectedImages.includes(String(idx))) {
             correct = false;
           }
         });
@@ -168,10 +171,57 @@
         if (correct && selectedImages.length > 0) {
           resultDiv.textContent = "CAPTCHA solved successfully! 🎉";
           resultDiv.style.color = "green";
+          submitButton.style.display = "none"; // Hide submit button
+          resetButton.style.display = "inline-block"; // Show reset button
         } else {
           resultDiv.textContent = "Oops, please try again! ❌";
           resultDiv.style.color = "red";
         }
+      });
+
+      // Reset button logic
+      resetButton.addEventListener("click", () => {
+        // Clear selected images
+        selectedImages = [];
+
+        // Remove 'selected' class from all images
+        imageItems.forEach((img) => {
+          img.classList.remove("selected");
+        });
+
+        // Shuffle images again
+        shuffleImages(imagesData);
+
+        // Re-render images
+        imagesContainer.innerHTML = "";
+        imagesData.forEach((imageData, index) => {
+          const img = document.createElement("img");
+          img.src = imageData.url;
+          img.alt = imageData.containsCar ? "Car" : "Not a Car";
+          img.classList.add("image-item");
+          img.setAttribute("data-index", index);
+          imagesContainer.appendChild(img);
+        });
+
+        // Reassign event listeners (because new images were created)
+        const newImageItems = document.querySelectorAll(".image-item");
+        newImageItems.forEach((img) => {
+          img.addEventListener("click", () => {
+            const index = img.getAttribute("data-index");
+            if (selectedImages.includes(index)) {
+              selectedImages = selectedImages.filter((id) => id !== index);
+              img.classList.remove("selected");
+            } else {
+              selectedImages.push(index);
+              img.classList.add("selected");
+            }
+          });
+        });
+
+        // Reset buttons and result
+        submitButton.style.display = "inline-block";
+        resetButton.style.display = "none";
+        resultDiv.textContent = "";
       });
     </script>
   </body>
