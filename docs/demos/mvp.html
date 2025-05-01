@@ -45,167 +45,97 @@
         font-weight: bold;
       }
     </style>
-    <!-- A Bootstrap Navbar OMG-->
+  </head>
+  <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <ul class="nav navbar-nav">
           <li class="active"><a href="../index.html">Home</a></li>
-          <li><a href="/ITP-Code/demos/about">About page link </a></li>
+          <li><a href="/ITP-Code/demos/about">About</a></li>
           <li>
-            <a href="/ITP-Code/demos/backgroundcc">Background color changer </a>
+            <a href="/ITP-Code/demos/backgroundcc">Background Color Changer</a>
           </li>
+          <li><a href="/ITP-Code/demos/palindrome">Palindrome Checker</a></li>
           <li>
-            <a href="/ITP-Code/demos/palindrome">Palindrome checker </a>
+            <a href="/ITP-Code/demos/romannumeral">Roman Numeral Converter</a>
           </li>
+          <li><a href="/ITP-Code/demos/todolist">To-Do List Creator</a></li>
           <li>
-            <a href="/ITP-Code/demos/romannumeral">Roman Numeral Converter </a>
+            <a href="/ITP-Code/demos/telephone">Telephone Number Checker</a>
           </li>
-          <li><a href="/ITP-Code/demos/todolist">To-Do-List Creator </a></li>
-          <li>
-            <a href="/ITP-Code/demos/telephone">Telephone Number Checker </a>
-          </li>
-          <li>
-            <a href="/ITP-Code/demos/cash">Cash Register </a>
-          </li>
+          <li><a href="/ITP-Code/demos/cash">Cash Register</a></li>
           <li><a href="/ITP-Code/demos/creature">Creature Search</a></li>
           <li><a href="/ITP-Code/demos/simple-fetch">Simple Fetch</a></li>
           <li><a href="/ITP-Code/demos/localfetch">Local Fetch</a></li>
-          <li><a href="/ITP-Code/demos/mvp">Captcha Game </a></li>
+          <li><a href="/ITP-Code/demos/mvp">Captcha Game</a></li>
         </ul>
       </div>
     </nav>
+
     <h1>CAPTCHA Game</h1>
-  </head>
-  <body>
     <p>Click on all the images that contain a car, then press Submit.</p>
 
-    <div id="images-container"></div>
+    <div id="images-container">
+      <img
+        src="mvp-photos/Car1.png"
+        alt="Car"
+        class="image-item"
+        data-contains-car="true"
+      />
+      <img
+        src="mvp-photos/NoCar1.png"
+        alt="Not a Car"
+        class="image-item"
+        data-contains-car="false"
+      />
+      <img
+        src="mvp-photos/Car2.png"
+        alt="Car"
+        class="image-item"
+        data-contains-car="true"
+      />
+      <img
+        src="mvp-photos/NoCar2.png"
+        alt="Not a Car"
+        class="image-item"
+        data-contains-car="false"
+      />
+      <img
+        src="mvp-photos/Car3.png"
+        alt="Car"
+        class="image-item"
+        data-contains-car="true"
+      />
+      <img
+        src="mvp-photos/NoCar3.png"
+        alt="Not a Car"
+        class="image-item"
+        data-contains-car="false"
+      />
+    </div>
 
     <div class="button-container">
       <button id="submit-btn">Submit</button>
       <button id="reset-btn" style="display: none">Reset</button>
-      <!-- NEW hidden reset button -->
     </div>
 
     <div id="result"></div>
 
     <script>
-      // Game Data: Images and whether they contain a "car"
-      const imagesData = [
-        { url: "../src/mvp-photos/Car1.png", containsCar: true },
-        {
-          url: "../src/mvp-photos/NoCar1.png",
-          containsCar: false,
-        },
-        { url: "../src/mvp-photos/Car2.png", containsCar: true },
-        {
-          url: "../src/mvp-photos/NoCar2.png",
-          containsCar: false,
-        },
-        { url: "../src/mvp-photos/Car3.png", containsCar: true },
-        { url: "../src/mvp-photos/NoCar3.png", containsCar: false },
-      ];
-
-      // Shuffle images to avoid predictability
-      function shuffleImages(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]]; // Swap
-        }
-      }
-
-      shuffleImages(imagesData);
-
-      // Render the images to the page
-      const imagesContainer = document.getElementById("images-container");
-      imagesData.forEach((imageData, index) => {
-        const img = document.createElement("img");
-        img.src = imageData.url;
-        img.alt = imageData.containsCar ? "Car" : "Not a Car";
-        img.classList.add("image-item");
-        img.setAttribute("data-index", index);
-        imagesContainer.appendChild(img);
-      });
-
-      // Add event listeners to image elements
-      let selectedImages = [];
-      const imageItems = document.querySelectorAll(".image-item");
-      imageItems.forEach((img) => {
-        img.addEventListener("click", () => {
-          const index = img.getAttribute("data-index");
-          if (selectedImages.includes(index)) {
-            // Deselect if already selected
-            selectedImages = selectedImages.filter((id) => id !== index);
-            img.classList.remove("selected");
-          } else {
-            // Select the image
-            selectedImages.push(index);
-            img.classList.add("selected");
-          }
-        });
-      });
-
-      // Submit button logic
       const submitButton = document.getElementById("submit-btn");
       const resetButton = document.getElementById("reset-btn");
       const resultDiv = document.getElementById("result");
+      const imagesContainer = document.getElementById("images-container");
+      let selectedImages = [];
 
-      submitButton.addEventListener("click", () => {
-        let correct = true;
-
-        // Check if any selected image is wrong
-        selectedImages.forEach((index) => {
-          if (!imagesData[Number(index)].containsCar) {
-            correct = false;
-          }
-        });
-
-        // Check if any correct car image was missed
-        imagesData.forEach((image, idx) => {
-          if (image.containsCar && !selectedImages.includes(String(idx))) {
-            correct = false;
-          }
-        });
-
-        // Show result
-        if (correct && selectedImages.length > 0) {
-          resultDiv.textContent = "CAPTCHA solved successfully! 🎉";
-          resultDiv.style.color = "green";
-          submitButton.style.display = "none"; // Hide submit button
-          resetButton.style.display = "inline-block"; // Show reset button
-        } else {
-          resultDiv.textContent = "Oops, please try again! ❌";
-          resultDiv.style.color = "red";
-        }
-      });
-
-      // Reset button logic
-      resetButton.addEventListener("click", () => {
-        // Clear selected images
+      // Set up event listeners for each image
+      function setupImageListeners() {
         selectedImages = [];
+        const imageItems = document.querySelectorAll(".image-item");
 
-        // Remove 'selected' class from all images
-        imageItems.forEach((img) => {
-          img.classList.remove("selected");
-        });
-
-        // Shuffle images again
-        shuffleImages(imagesData);
-
-        // Re-render images
-        imagesContainer.innerHTML = "";
-        imagesData.forEach((imageData, index) => {
-          const img = document.createElement("img");
-          img.src = imageData.url;
-          img.alt = imageData.containsCar ? "Car" : "Not a Car";
-          img.classList.add("image-item");
-          img.setAttribute("data-index", index);
-          imagesContainer.appendChild(img);
-        });
-
-        // Reassign event listeners (because new images were created)
-        const newImageItems = document.querySelectorAll(".image-item");
-        newImageItems.forEach((img) => {
+        imageItems.forEach((img, index) => {
+          img.setAttribute("data-index", index); // add index
           img.addEventListener("click", () => {
             const index = img.getAttribute("data-index");
             if (selectedImages.includes(index)) {
@@ -217,12 +147,68 @@
             }
           });
         });
+      }
 
-        // Reset buttons and result
+      setupImageListeners();
+
+      submitButton.addEventListener("click", () => {
+        let correct = true;
+
+        const imageItems = document.querySelectorAll(".image-item");
+
+        // Check wrong selections
+        selectedImages.forEach((index) => {
+          const img = imageItems[index];
+          if (img.getAttribute("data-contains-car") !== "true") {
+            correct = false;
+          }
+        });
+
+        // Check missed correct selections
+        imageItems.forEach((img, idx) => {
+          if (
+            img.getAttribute("data-contains-car") === "true" &&
+            !selectedImages.includes(String(idx))
+          ) {
+            correct = false;
+          }
+        });
+
+        if (correct && selectedImages.length > 0) {
+          resultDiv.textContent = "CAPTCHA solved successfully! 🎉";
+          resultDiv.style.color = "green";
+          submitButton.style.display = "none";
+          resetButton.style.display = "inline-block";
+        } else {
+          resultDiv.textContent = "Oops, please try again! ❌";
+          resultDiv.style.color = "red";
+        }
+      });
+
+      // Reset Button
+      resetButton.addEventListener("click", () => {
+        selectedImages = [];
+        const imageItems = document.querySelectorAll(".image-item");
+        imageItems.forEach((img) => {
+          img.classList.remove("selected");
+        });
+
+        resultDiv.textContent = "";
         submitButton.style.display = "inline-block";
         resetButton.style.display = "none";
-        resultDiv.textContent = "";
+
+        shuffleImagesInContainer(imagesContainer);
+        setupImageListeners(); // Rebind clicks
       });
+
+      // Shuffle images inside container
+      function shuffleImagesInContainer(container) {
+        const images = Array.from(container.children);
+        for (let i = images.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          container.appendChild(images[j]);
+        }
+      }
     </script>
   </body>
 </html>
