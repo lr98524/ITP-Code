@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Creature Search App</title>
+    <link rel="stylesheet" href="../styles/creature.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+     <!-- A Bootstrap Navbar OMG-->
+     <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="../index.html">Home</a></li>
+            <li><a href="/ITP-Code/demos/about">About page link </a></li>
+            <li>
+              <a href="/ITP-Code/demos/backgroundcc"
+                >Background color changer
+              </a>
+            </li>
+            <li>
+              <a href="/ITP-Code/demos/palindrome">Palindrome checker </a>
+            </li>
+            <li>
+              <a href="/ITP-Code/demos/romannumeral"
+                >Roman Numeral Converter
+              </a>
+            </li>
+            <li><a href="/ITP-Code/demos/todolist">To-Do-List Creator </a></li>
+            <li>
+              <a href="/ITP-Code/demos/telephone">Telephone Number Checker </a>
+            </li>
+            <li>
+              <a href="/ITP-Code/demos/cash">Cash Register </a>
+            </li>
+            <li><a href="/ITP-Code/demos/creature"></a>Creature Search</li>
+            <li><a href="/ITP-Code/demos/simple-fetch">Simple Fetch</a></li>
+            <li><a href="/ITP-Code/demos/localfetch">Local Fetch</a></li>
+            <li><a href="/ITP-Code/demos/mvp">Captcha Game </a></li>
+          </ul>
+        </div>
+      </nav>
+      <h1>Creature Search</h1>
+  </head>
+  <body>
+    <img src="https://i.imgur.com/jqe4DD9.png" alt="RPG Creature Search App Logo" class="logo">
+    <h1>RPG Creature Search App</h1>
+    <div class="main-container" id="cont-1">
+      <p class="instructions" id="search-instructions">Search for Creature Name or ID:</p>
+      <div class="secondary-container" id="cont-1_5">
+        <form>
+          <input type="text" class="search" id="search-input" required>
+          <button class="search-btn" id="search-button">Search</button>
+        </form>
+      </div>
+      <div class="secondary-container" id="cont-2">
+        <div class="secondary-container" id="cont-2_5">
+          <p class="creature-gen" id="creature-name">Name</p><p class="creature-gen" id="creature-id">#ID</p>
+          <p class="creature-size" id="weight">Weight: </p><p class="creature-size" id="height">Height: </p>
+          <span id="types"></span>
+        </div>
+        <p class="moves" id="move-name">Move Name</p>
+        <p class="moves" id="move-info">Move info</p>
+      </div>
+      <div class="secondary-container" id="cont-3">
+        <span class="base" id="base-label">Base</span><span class="stats" id="stats-label">Stats</span>
+        <span class="base" id="hp">HP</span><span class="stats" id="hp-stats">?</span>
+        <span class="base" id="attack">Attack</span><span class="stats" id="attack-stats">?</span>
+        <span class="base" id="defense">Defense</span><span class="stats" id="defense-stats">?</span>
+        <span class="base" id="special-attack">Sp. Attack</span><span class="stats" id="special-attack-stats">?</span>
+        <span class="base" id="special-defense">Sp. Defense</span><span class="stats" id="special-defense-stats">?</span>
+        <span class="base" id="speed">Speed</span><span class="stats" id="speed-stats">?</span>
+      </div>
+    </div>
+    <br>
+    <script src="../scripts/creaturescript.js"></script>
+  </body>
+</html>

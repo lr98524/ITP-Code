@@ -1,0 +1,198 @@
+/* ====== GENERALI ====== */
+body {
+    background-color: #1B1B32;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .logo {
+    max-width: 8%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding-top: 0.75rem;
+  }
+  
+  h1 {
+    color: white;
+    text-align: center;
+    font-family: "Courier", sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* ====== CONTENITORI PRINCIPALI ====== */
+  #cont-1 {
+    margin: 0 auto;
+    background-color: #F5F6F7;
+    width: 33vw;
+    height: 108vh;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px #AEACB2;
+    padding-bottom:20px;
+  }
+  
+  #cont-1_5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 31vw;
+    margin: 0 auto;
+  }
+  
+  /* ====== INPUT E BUTTON ====== */
+  input {
+    width: 180px;
+    height: 35px;
+    font-size: 0.8rem;
+    padding-left: 5px;
+    margin: 0 10px;
+  }
+  
+  input:focus {
+    outline: 2px solid #198EEE;
+  }
+  
+  button {
+    color: white;
+    background-color: #7F21AB;
+    border: none;
+    width: 80px;
+    height: 40px;
+    border-radius: 18px;
+    cursor: pointer;
+  }
+  
+  /* ====== ISTRUZIONI ====== */
+  .instructions {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  /* ====== CONTENUTO CREATURE ====== */
+  #cont-2 {
+    margin: 25px auto 10px auto;
+    background-color: #F0F1F7;
+    width: 30vw;
+    height: 34vh;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  #cont-2_5 {
+    width: 11vw;
+    height: 10vh;
+    margin: 10px auto 50px 1px;
+  }
+  
+  /* ====== INFORMAZIONI CREATURE ====== */
+  .creature-gen {
+    display: inline-flex;
+    font-size: 0.9rem;
+    font-family:"Arial",sans-serif;
+    font-weight: bold;
+    margin: 10px 0 5px 3px;
+    white-space: nowrap;
+  }
+  
+  #creature-id {
+    white-space: nowrap;
+    font-weight:normal;
+    font-size:0.8rem;
+    padding-left:5px;
+  }
+  
+  .creature-size {
+    display: inline;
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin: 5px 2px 0 5px;
+    white-space: nowrap;
+  }
+  
+  #creature-id {
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin-top: 2px;
+  }
+  
+  /* ====== TYPES ====== */
+  #types {
+    display: inline-flex;
+    gap: 8px;
+    margin: 10px -5px 40px 5px;
+    padding: 4px;
+    white-space: nowrap;
+  }
+  
+  #types span {
+    padding: 4px 10px;
+    margin-bottom:10px;
+    margin-left:-5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    background-color: grey; /* fallback */
+  }
+  
+  /* ====== MOSSE ====== */
+  .moves {
+    margin-left: 9px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  #move-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 60px 0px 5px 9px;
+    display: block;
+  }
+  
+  #move-info {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+  
+  /* ====== STATISTICHE ====== */
+  #cont-3 {
+    width: 32vw;
+    margin: 15px auto 0 auto;
+  }
+  
+  .base,
+  .stats {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7F21AB;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+    width:auto;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .base {
+    width: 60%;
+    margin: 0 0 5px 15px;
+  }
+  
+  .stats {
+    width: 30%;
+    margin: 0 0 5px 5px;
+  }
+  
+  #base-label,
+  #stats-label {
+    font-size: 1.3rem;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+  }

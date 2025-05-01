@@ -16,6 +16,7 @@ export default defineConfig({
         todolist: "src/demos/todolist.html",
         telephone: "src/demos/telephone.html",
         cash: "src/demos/cash.html",
+        creature: "src/demos/creature.html",
         simplefetch: "src/demos/simple-fetch.html",
         localfetch: "src/demos/localfetch.html",
         mvp: "src/demos/mvp.html",
