@@ -15,6 +15,7 @@ export default defineConfig({
         romannumeral: "src/demos/romannumeral.html",
         todolist: "src/demos/todolist.html",
         telephone: "src/demos/telephone.html",
+        cash: "src/demos/cash.html",
         simplefetch: "src/demos/simple-fetch.html",
         localfetch: "src/demos/localfetch.html",
         mvp: "src/demos/mvp.html",
